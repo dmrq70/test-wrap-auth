@@ -2,20 +2,20 @@
 
 generated using Luminus version "2.9.10.74"
 
-FIXME
+## Protecting API URLs seems not to be working
 
-## Prerequisites
+I changed the code so that */api/plus* is public but */private/minus* is not.
 
-You will need [Leiningen][1] 2.0 or above installed.
-
-[1]: https://github.com/technomancy/leiningen
-
-## Running
+### How to test
 
 To start a web server for the application, run:
 
     lein run
 
-## License
+then this work (it does):
 
-Copyright © 2018 FIXME
+    curl http://localhost:3000/api/plus?x=3&y=4
+
+this should fail with unauthorized (it does not):
+
+     curl http://localhost:3000/private/minus?x=1&y=2

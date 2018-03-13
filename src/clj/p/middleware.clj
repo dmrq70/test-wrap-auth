@@ -71,7 +71,7 @@
     (binding [*identity* (get-in request [:session :identity])]
       (handler request))))
 
-(defn owrap-auth [handler]
+(defn wrap-auth [handler]
   (let [backend (session-backend)]
     (-> handler
         wrap-identity

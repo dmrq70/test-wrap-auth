@@ -2,7 +2,7 @@
   (:require [compojure.core :refer [routes wrap-routes]]
             [p.layout :refer [error-page]]
             [p.routes.home :refer [home-routes]]
-            [p.routes.services :refer [service-routes]]
+            [p.routes.services :refer [public-service-routes authorized-service-routes]]
             [compojure.route :as route]
             [p.env :refer [defaults]]
             [mount.core :as mount]
@@ -14,7 +14,9 @@
 
 (def app-routes
   (routes
-   (wrap-routes #'service-routes middleware/wrap-auth)))
+   (wrap-routes #'authorized-service-routes middleware/wrap-auth)
+   #'public-service-routes
+   ))
 
 
 (defn app [] (middleware/wrap-base #'app-routes))
