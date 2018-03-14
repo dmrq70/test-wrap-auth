@@ -12,10 +12,15 @@ To start a web server for the application, run:
 
     lein run
 
-then this work (it does):
+then this should work (it does):
 
     curl http://localhost:3000/api/plus?x=3&y=4
 
 this should fail with unauthorized (it does not):
 
      curl http://localhost:3000/private/minus?x=1&y=2
+
+
+## Solved
+
+`wrap-restricted` was not in the ring for the routes that should be protected.
