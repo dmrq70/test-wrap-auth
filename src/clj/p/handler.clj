@@ -14,7 +14,9 @@
 
 (def app-routes
   (routes
-   (wrap-routes #'authorized-service-routes middleware/wrap-auth)
+   (-> #'authorized-service-routes
+       (wrap-routes  middleware/wrap-auth)
+       (wrap-routes  middleware/wrap-restricted))
    #'public-service-routes
    ))
 
